@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+
+{% block title %}Question: {{ qn.title|truncatechars:30 }}{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-8">
+
+        <!-- Question -->
+        <h3 class="mt-4">{{ qn.title }}</h3>
+        <div class="text-right">
+
+                <div class="lead"> Posted by <a href="{% url 'qa:author' a_id=qn.author_id %}"
+                                              data-toggle="tooltip" title="Grab all Questions by {{ qn.author }}">
+                    {{ qn.author }}</a> on {{ qn.added_at }}&nbsp;
+                                    <a href="#" class="btn btn-primary">
+                    Likes <span class="badge badge-light">{{ qn.rating }}</span>
+                </a>
+                    <!--controls: question-->
+                {% if request.user.id == qn.author.id %}
+                            <div class="btn-group" role="group">
+                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Edit
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                    <a class="dropdown-item" href="{% url 'qa:edit' obj_type='q' o_id=qn.id %}">Edit</a>
+                                    <form action="{% url 'qa:delete' obj_type='q' o_id=qn.id %}" class="select2-dropdown"
+                                          method="POST">
+                                        {% csrf_token %}<input type="submit" value="Delete" class="dropdown-item"
+                                                               data-toggle="tooltip" data-placement="top"
+                                                               title="Delete the Question"/>
+                                    </form>
+                                </div>
+                            </div>
+                {% endif %}
+
+                </div>
+        </div>
+
+        <div class="media border-bottom p-3">
+           {{ qn.text }}
+        </div>
+
+       <!-- Tags -->
+       <div class="d-inline mt-2">
+            {% for c in qn.category.all %}
+                       <a href="{{ c.get_url }}" class="badge bg-info text-white">{{ c.name }}</a>
+            {% endfor %}
+        </div>
+
+        <!-- Answers -->
+        {% for answer in answers %}
+
+            {% if answer.best_answer %}
+                <div class="media border border-success rounded p-3 my-3">
+            {% else %}
+                <div class="media  border-bottom border-left rounded p-3 my-3">
+            {% endif %}
+
+            <img src="/media/{{ answer.author.avatar }}" alt="" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+            <div class="media-body">
+                <div class="row">
+                    <div class="col-sm-10">
+                            <p><strong> answered on {{ answer.added_at }} by {{ answer.author }}</strong>
+                                {% if answer.best_answer %}&nbsp;
+                                    <a class="badge badge-success" href="{% url 'qa:best_answer' a_id=answer.id %}"
+                                       data-toggle="tooltip" data-placement="right"
+                                       title="The Questions's Author Marked This Answer as a Best One">
+                                        Best Answer!</a>
+                                {% else %}
+                                    {% if request.user.id == answer.question.author.id %}
+                                        <a class="badge badge-secondary" href="{% url 'qa:best_answer' a_id=answer.id %}">Upvote</a>
+                                    {% endif %}
+                                {% endif %}
+                            </p>
+                    </div>
+
+                    {# controls: edit/delete answer #}
+                    {% if request.user.id == answer.author.id %}
+                    <div class="col-sm-2">
+                        <div class="btn-group" role="group">
+                            <button id="btnGroupDrop1" type="button" class="btn btn-info btn-secondary dropdown-toggle"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Edit
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item" href="{% url 'qa:edit' obj_type='a' o_id=answer.id %}">Edit</a>
+                                <form action="{% url 'qa:delete' obj_type='a' o_id=answer.id %}" class="select2-dropdown"
+                                    method="post">
+                                    {% csrf_token %}
+                                    <input type="submit" value="Delete" class="dropdown-item" data-toggle="tooltip"
+                                        data-placement="top" title="Delete the Answer" />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+                {# controls answer: end #}
+                {{ answer.text }}
+            </div>
+        </div>
+        {% endfor %}
+        {# answer: end #}
+
+        <!-- AnswerForm -->
+        {% include 'answer.html' with form=ans_form qn_id=qn.id %}
+
+    </div>
+</div>
+</div>
+{% endblock %}

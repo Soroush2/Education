@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+              <form class="uniForm" method="post">
+                  {% csrf_token %}
+                    {% form %}
+              </form>
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<link rel="stylesheet" href="{%static 'assets/course.css' %}">
+<main class="course">
+  <section class="course-description">
+    <img src="../../../static/assets/download.jpg" alt="">
+    <li>توضیحات دوره</li>
+    <p>در این دوره آموزشی با کمک مثال‌های ایرانی، راه یافتن ایده مناسب را یاد می‌گیریم و با چند ابزار کاربردی در این
+      مسیر آشنا می‌شویم.
+      در این دوره با هم یاد می‌گیریم که:
+      چطور یک ایده مناسب پیدا کنیم
+      چطور بهترین ایده از میان چند ایده را انتخاب کنیم
+      معرفی سایت‌هایی پر از ایده ناب
+      آشنایی با تمپلیت و قالب رائه ایده
+      آشنایی با تکنیک SCAMPER
+      آشنایی با تکنیک 5 چرا
+      آشنایی با بوم ایده</p>
+  </section>
+  <section class="course-sessions">
+    <li>جلسات دوره</li>
+    <div class="course-info">
+      <div>
+        <span>1</span>
+        <p>معرفی دوره</p>
+      </div>
+      <div class="course-time">
+        <div>
+          <span>4:43</span>
+          <span><ion-icon name="alarm-outline"></ion-icon></span>
+        </div>
+        <span><ion-icon name="arrow-down-outline"></ion-icon></span>
+      </div>
+    </div>
+    <div class="course-info">
+      <div>
+        <span>1</span>
+        <p>معرفی دوره</p>
+      </div>
+      <div class="course-time">
+        <div>
+          <span>4:43</span>
+          <span><ion-icon name="alarm-outline"></ion-icon></span>
+        </div>
+        <span><ion-icon name="arrow-down-outline"></ion-icon></span>
+      </div>
+    </div>
+    <div class="course-info">
+      <div>
+        <span>1</span>
+        <p>معرفی دوره</p>
+      </div>
+      <div class="course-time">
+        <div>
+          <span>4:43</span>
+          <span><ion-icon name="alarm-outline"></ion-icon></span>
+        </div>
+        <span><ion-icon name="arrow-down-outline"></ion-icon></span>
+      </div>
+    </div>
+    <div class="course-info">
+      <div>
+        <span>1</span>
+        <p>معرفی دوره</p>
+      </div>
+      <div class="course-time">
+        <div>
+          <span>4:43</span>
+          <span><ion-icon name="alarm-outline"></ion-icon></span>
+        </div>
+        <span><ion-icon name="arrow-down-outline"></ion-icon></span>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <p>video title: {{post.title}}</p> <br>
+  <p>post description: {{post.description}}</p><br>
+  <a href="{{ post.file.url}}" >download link: {{post.file}}</a>
+<div>
+    {{ post.file.url }}
+</div>
+    <video controls height="500" width="650">
+    <source src="{{ post.file.url }}">
+    </video>
+<br>
+      <a class="btn btn-danger" href="{% url 'accounts:buy' post.id request.user.id %}">Buy</a> -->

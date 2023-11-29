@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} education {% endblock title %} </title>
+    <link rel="stylesheet" href="{%static 'assets/styles.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/lottie-web@5.7.7/build/player/lottie.min.js"></script>
+
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+
+<body>
+    <div class="bg">
+        <ul class="glass">
+        </ul>
+    </div>
+    <header>
+        <button class="btnLogin-popup">ورود</button>
+
+        <nav>
+            <ul>
+                <li><a href="{% url 'home:home' %}">خانه</a></li>
+                <li><a href="#courses-section" onclick="smoothScroll('#courses-section')">دوره ها</a></li>
+                <li><a href="#about">درباره ما</a></li>
+                <li><a href="#contact">تماس با ما</a></li>
+            </ul>
+        </nav>
+        <a href="#" class="logo">
+            <img src="../../../static/logo/noBug.png" alt="Logo">
+
+        </a>
+
+
+    </header>
+
+
+    {%block content%}
+    {%endblock%}
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="contact-info">
+                <p>&copy; 2023 Your Website</p>
+                <p><i class="fas fa-phone"></i> Phone: +1 (123) 456-7890</p>
+                <p><i class="fas fa-envelope"></i> Email: info@example.com</p>
+            </div>
+            <div class="social-icons">
+                <a href="#" target="_blank" title="Facebook"><ion-icon name="logo-facebook"></ion-icon></a>
+                <a href="#" target="_blank" title="Twitter"><ion-icon name="logo-twitter"></ion-icon></a>
+                <a href="#" target="_blank" title="Instagram"><ion-icon name="logo-instagram"></ion-icon></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/static/scripts/script.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>

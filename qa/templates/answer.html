@@ -1,0 +1,13 @@
+<div class="card my-4">
+          <h5 class="card-header ">Leave an Answer</h5>
+          <div class="card-body">
+
+              <form class="uniForm" method="post" action="{% url 'qa:question' qn_id=qn_id %}">
+                  {% csrf_token %}
+                  {{ ans_form }}
+                  <button type="submit">submit</button>
+
+              </form>
+
+          </div>
+</div>

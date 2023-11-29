@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% comment %} {% for post in posts %}
+<ul>
+    <li><a href="{% url 'home:detail' post.id %}">{{post.title}}</a></li>
+</ul>
+{% endfor %} {% endcomment %}
+
+<div class="container">
+
+
+    <div class="animation-wrapper">
+        <div class="animation-container">
+            <lottie-player src="../../../static/scripts/coding.json" background="transparent" speed="1" loop autoplay
+                direction="1" mode="normal"></lottie-player>
+
+        </div>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>آموزش <span></span></h1>
+                <div class="welcome-content">
+                    <p><ion-icon name="star-outline" class="welcome-content-icon"></ion-icon><span>یادگیری
+                            بینهایت</span></p>
+                    <p><ion-icon name="star-outline" class="welcome-content-icon"></ion-icon><span>یادگیری
+                            آسان</span></p>
+                    <p><ion-icon name="star-outline" class="welcome-content-icon"></ion-icon><span>پشتیبانی 24 ساعته
+                        </span></p>
+                    <p><ion-icon name="star-outline" class="welcome-content-icon"></ion-icon><span>یادگیری
+                            بینهایت</span></p>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <main class="home">
+        <h3>dore ha</h3>
+
+        <section class="courses" dir="ltr" id="courses-section">
+            {% for post in posts %}
+            <div class="course-card">
+                <img src="assets/download.jpg" alt="Course 1">
+                <h2>{{ post.title }}</h2>
+                <p>{{ post.description}}</p>
+                <a href="{% url 'home:detail' post.id %}">
+                    <span>شروع دوره</span>
+                    <ion-icon name="arrow-back-outline"></ion-icon>
+                </a>
+            </div>
+            {% endfor %}
+
+        </section>
+    </main>
+    <div class="login-form-wrapper">
+        <span class="icon-close"><ion-icon name="close"></ion-icon></span>
+        <div class="form-box login">
+            <h2>ورود</h2>
+            <form action="#" method="post">
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                    <input type="email" required>
+                    <label>Email</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                    <input type="password" required>
+                    <label>Password</label>
+                </div>
+                <div class="remember-forgot">
+                    <label><input type="checkbox">Remember me</label>
+                    <a href="#">Forgot Password?</a>
+                </div>
+                <button type="submit" class="btn">Login</button>
+                <div class="login-register">
+                    <p>Don't have an account?<a href="#" class="register-link">Register</a></p>
+                </div>
+            </form>
+        </div>
+        <div class="form-box register">
+            <h2>ثبت نام</h2>
+            <form action="#">
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="person"></ion-icon></span>
+                    <input type="text" required>
+                    <label>Username</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                    <input type="email" required>
+                    <label>Email</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                    <input type="password" required>
+                    <label>Password</label>
+                </div>
+                <div class="remember-forgot">
+                    <label><input type="checkbox">I kind of agree to the terms & conditions</label>
+                </div>
+                <button type="submit" class="btn">Register</button>
+                <div class="login-register">
+                    <p>Already have an account?<a href="#" class="login-link">Login</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

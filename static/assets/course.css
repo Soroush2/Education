@@ -1,0 +1,58 @@
+main.course section {
+    width: 40%;
+    background: rgb(5, 18, 30);
+    border-radius: 10px;
+    margin: 2rem auto;
+    padding: 1rem;
+    line-height: 2.5rem;
+
+}
+main.course section li {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+
+}
+main.course .course-description img {
+    width: 100%;
+}
+main.course .course-info{
+    background-color:rgb(54, 54, 54) ;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+main.course .course-info div{
+    display: flex;
+    align-items: center;
+    width: 50%;
+
+}
+main.course .course-info div p{
+    border-right: 3px solid #fff;
+    margin-right: 5px;
+    padding:0 10px;
+}
+main.course .course-info .course-time div{
+    display: flex;
+    align-items: center;
+}
+main.course .course-info .course-time{
+    justify-content: space-around;
+
+}
+main.course .course-info .course-time span{
+    cursor: pointer;
+    transition: color .5s; 
+
+}
+main.course .course-info .course-time span ion-icon{
+    font-size: 1.1rem;
+}
+main.course .course-info .course-time span:hover{
+    color:rgb(33, 125, 187) ;
+
+}

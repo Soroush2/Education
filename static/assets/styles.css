@@ -1,0 +1,570 @@
+/* ********************************** GENERAL RULES ********************************** */
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+html {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+    margin: 0px;
+}
+
+@font-face {
+    font-family: persian-sans;
+    src: url("../fonts/vazir-font-v16.1.0/Vazir-Bold.woff") format("woff");
+}
+
+body {
+    font-family: persian-sans;
+    margin: 0px;
+    padding: 0px;
+    background-color: rgb(248, 248, 248);
+    color: rgb(255, 255, 255);
+    direction: rtl;
+}
+
+/* ********************************** BACKGROUND ANIMATION ********************************** */
+
+.bg {
+    z-index: -1;
+    padding-top: 1rem;
+    width: 100vw;
+    height: 100vh;
+    background-image: linear-gradient(45deg, rgb(33, 50, 69) 0%, rgb(42, 63, 85) 46%, rgb(34, 53, 72) 100%);
+    position: fixed;
+}
+
+.glass {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.glass li {
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    animation: 5s linear 0s infinite normal none running rise, 5s linear 0s infinite normal none running spin;
+    bottom: -20px;
+    opacity: 0;
+}
+
+@keyframes spin {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 1;
+        border-radius: 5%;
+    }
+
+    100% {
+        transform: translateY(-100vh) rotate(720deg);
+        opacity: 0;
+        border-radius: 50%;
+    }
+}
+
+@keyframes rise {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        transform: translateY(90vh) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-5vh) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+/* ********************************** HEADER AND NAVBAR ********************************** */
+
+
+header {
+    text-align: center;
+    margin: auto;
+    padding: 10px 20px;
+    font-weight: bold;
+    display: flex;
+    width: -webkit-fill-available;
+    background-color: rgb(14, 35, 56);
+    z-index: 2;
+    align-items: center;
+}
+
+header .logo {
+    z-index: 2;
+}
+
+header .logo img {
+    width: 60px;
+    height: auto;
+    cursor: pointer;
+}
+
+header nav {
+    width: 55%;
+    margin: auto;
+    padding: 20px;
+    border-radius: 0px 30px;
+    z-index: 2;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    position: relative;
+    color: rgb(255, 255, 255);
+    padding: 0.5rem;
+}
+
+nav ul li a::after {
+    content: "";
+    position: absolute;
+    background-color: rgb(33, 125, 187);
+    height: 3px;
+    width: 0px;
+    right: 0px;
+    bottom: -10px;
+    transition: all 0.3s ease 0s;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* ********************************** LOGIN AND REGISTER POPUP ********************************** */
+
+
+.btnLogin-popup {
+    z-index: 2;
+    width: 130px;
+    height: 50px;
+    outline: none;
+    background: transparent;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 6px;
+    color: rgb(255, 255, 255);
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: all 0.5s ease 0s;
+    cursor: pointer;
+}
+
+.btnLogin-popup:hover {
+    background-color: rgb(255, 255, 255);
+    color: rgb(22, 41, 56);
+}
+
+.login-form-wrapper {
+    direction: ltr;
+    width: 400px;
+    height: 440px;
+    background-color: rgba(255, 255, 255, 0.216);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.5s ease 0s, height 0.2s ease 0s;
+    z-index: 3;
+}
+
+.login-form-wrapper.active {
+    height: 520px;
+}
+
+.login-form-wrapper.active-popup {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.login-form-wrapper .form-box.login {
+    transition: transform 0.18s ease 0s;
+    transform: translateX(0px);
+}
+
+.login-form-wrapper.active .form-box.login {
+    transition: none 0s ease 0s;
+    transform: translateX(-400px);
+}
+
+.login-form-wrapper .form-box.register {
+    position: absolute;
+    transition: none 0s ease 0s;
+    transform: translateX(400px);
+}
+
+.login-form-wrapper.active .form-box.register {
+    transition: transform 0.18s ease 0s;
+    transform: translateX(0px);
+}
+
+.login-form-wrapper .form-box {
+    padding: 40px 70px;
+}
+
+.login-form-wrapper .icon-close {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 45px;
+    height: 45px;
+    background-color: rgb(22, 41, 56);
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.form-box h2 {
+    font-size: 2em;
+    color: rgb(22, 57, 56);
+    text-align: center;
+}
+
+.input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid rgb(22, 57, 56);
+    margin: 30px 0px;
+}
+
+.input-box label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    color: rgb(22, 57, 56);
+    font-weight: 500;
+    pointer-events: none;
+    transition: all 0.2s ease 0s;
+}
+
+.input-box input:focus~label,
+.input-box input:valid~label {
+    top: -5px;
+}
+
+.input-box input {
+    width: 85%;
+    height: 100%;
+    padding: 0px 40px 0px 5px;
+    overflow: hidden;
+    font-size: 1em;
+    color: rgb(22, 57, 56);
+    font-weight: 600;
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+.input-box .icon {
+    position: absolute;
+    right: 8px;
+    color: rgb(22, 57, 56);
+    line-height: 57px;
+}
+
+.remember-forgot {
+    font-size: 0.9em;
+    color: rgb(22, 57, 56);
+    font-weight: 500;
+    margin: -15px 0px 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.remember-forgot label input {
+    accent-color: rgb(22, 57, 56);
+    margin-right: 3px;
+}
+
+.remember-forgot a {
+    color: rgb(22, 41, 56);
+    text-decoration: none;
+}
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+}
+
+.btn {
+    width: 100%;
+    height: 45px;
+    background-color: rgb(22, 41, 56);
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    font-weight: 500;
+}
+
+.login-register {
+    font-size: 0.9em;
+    color: rgb(22, 41, 56);
+    text-align: center;
+    font-weight: 500;
+    margin: 25px 0px 10px;
+}
+
+.login-register p a {
+    color: rgb(22, 41, 56);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-register p a:hover {
+    text-decoration: underline;
+}
+
+/* ********************************** HERO ANIMATION ********************************** */
+
+.animation-container {
+    margin: auto;
+    width: 45%;
+    padding: 0rem 0px 0px;
+}
+
+.animation-wrapper {
+    display: flex;
+    direction: ltr;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ********************************** HERO SECTION********************************** */
+
+
+.hero {
+    background: url("hero-background.jpg") center center / cover;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 1rem;
+    width: 50%;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.hero-content h1{
+    direction: rtl;
+
+}
+.hero-content h1 span{
+    position: relative;
+    color: #53a5ed;
+    position: relative;
+}
+.hero-content h1 span::before{
+    content: "";
+    height: 4vw;
+    width: 2px;
+    position: absolute;
+    top: 50%;
+    left: -8px;
+    margin-right: 8px;
+    background: #53a5ed;
+    transform: translateY(-45%);
+    animation: blink 0.7s infinite;
+}
+.hero-content h1 span.stop-blinking::before {
+    animation: none;
+}
+@keyframes blink {
+    50% { opacity: 0 }
+}
+
+
+.hero-content h1 {
+    font-size: 4vw;
+    margin: 0px;
+}
+
+.hero-content p {
+    font-size: 1.7vw;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.welcome-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    width: 60%;
+    direction: rtl;
+    font-size: 1.7rem;
+}
+
+.welcome-content-icon {
+    margin-left: 1rem;
+    border-radius: 50%;
+    box-shadow: rgba(255, 42, 42, 0.3) 4px 6px 0px;
+    color: red;
+    font-size: 1.5rem;
+}
+
+/* ********************************** COURSES ********************************** */
+
+
+main.home {
+    width: 80%;
+    padding: 2rem;
+    margin: auto;
+}
+
+.courses {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    margin: 50px 0px;
+    position: relative;
+    z-index: 1;
+}
+
+.course-card {
+    width: 20%;
+    background: rgb(5, 18, 30);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 5px 0px;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 15px;
+    color: white;
+    z-index: 2;
+    direction: rtl;
+}
+
+.course-card img {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    transition: filter 0.5s ease 0s, transform 0.5s ease 0s;
+    cursor: pointer;
+    background-color: black;
+}
+
+.course-card img:hover {
+    transform: scale(1.05);
+    filter: brightness(75%);
+}
+
+.course-card h2 {
+    margin: 10px 0px;
+    font-size: 17px;
+}
+
+.course-card p {
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.course-card a {
+    border-top: 3px solid rgb(250, 250, 250);
+    margin-top: 10px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    background: transparent;
+    padding: 8px 15px;
+    border-radius: 3px;
+    transition: background 0.3s ease 0s;
+    width: 90%;
+    margin-right: 5px;
+    direction: rtl;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.course-card a:hover {
+    background: rgb(33, 125, 187);
+}
+
+/* ********************************** FOOTER ********************************** */
+
+
+
+.content {
+    margin: 20px;
+    padding: 20px;
+}
+
+.site-footer {
+    background-color: #1e1e1e;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.contact-info p,
+.social-icons a {
+    margin: 5px 0;
+}
+
+.site-footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.site-footer a:hover {
+    text-decoration: underline;
+}
+
+
+.social-icons a {
+    margin: 0 10px;
+    font-size: 20px;
+}
